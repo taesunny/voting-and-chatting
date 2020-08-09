@@ -4,7 +4,7 @@ import com.sunny.votingandchatting.service.ChatService
 import org.springframework.web.socket.WebSocketSession
 import java.util.*
 
-class ChattingDto (private val votingRoomId: String, private val name: String) {
+class ChattingDto (private val votingId: String, private val name: String) {
     private val sessions: MutableSet<WebSocketSession> = HashSet()
 
     fun handleActions(session: WebSocketSession, chatMessage: ChatMessage, chatService: ChatService) {

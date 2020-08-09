@@ -1,7 +1,7 @@
 package com.sunny.votingandchatting.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.sunny.votingandchatting.domain.VotingRoom
+import com.sunny.votingandchatting.domain.Voting
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import org.springframework.web.socket.TextMessage
@@ -14,27 +14,27 @@ import javax.annotation.PostConstruct
 @Service
 class ChatService {
     private val objectMapper: ObjectMapper? = null
-    private var votingRooms: MutableMap<Long, VotingRoom>? = null
+    private var votingRooms: MutableMap<Long, Voting>? = null
     private val logger = KotlinLogging.logger {}
 
     @PostConstruct
     private fun init() {
-        votingRooms = LinkedHashMap<Long, VotingRoom>()
+        votingRooms = LinkedHashMap<Long, Voting>()
     }
 
-    fun findAllRoom(): List<VotingRoom?> {
-        return ArrayList<VotingRoom?>(votingRooms!!.values)
+    fun findAllRoom(): List<Voting?> {
+        return ArrayList<Voting?>(votingRooms!!.values)
     }
 
-    fun findVotingRoomById(votingRoomId: Long): VotingRoom? {
+    fun findVotingRoomById(votingRoomId: Long): Voting? {
         return votingRooms!![votingRoomId]
     }
 
-    fun createRoom(name: String, description: String?): VotingRoom {
+    fun createRoom(name: String, description: String?): Voting {
         var randomId: Long  = Random().nextLong()
 
         // temp
-        val chatRoom: VotingRoom = VotingRoom(randomId, name, description, LocalDateTime.now())
+        val chatRoom: Voting = Voting(randomId, name, description, LocalDateTime.now())
         votingRooms!![randomId] = chatRoom
         return chatRoom
     }

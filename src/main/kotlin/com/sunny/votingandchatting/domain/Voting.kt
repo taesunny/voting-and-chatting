@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "voting_room")
-data class VotingRoom(
+data class Voting(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long?,
@@ -19,8 +19,8 @@ data class VotingRoom(
     constructor(name: String, description: String?): this(null, name, description, LocalDateTime.now())
 
     companion object {
-        fun createVotingRoom(name: String, description: String): VotingRoom {
-            return VotingRoom(name, description)
+        fun createVotingRoom(name: String, description: String): Voting {
+            return Voting(name, description)
         }
     }
 
